@@ -1,0 +1,25 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="head(title)">
+        <link rel="icon" th:href="@{/images/wijnhuis.ico}" type="image/x-icon">
+        <title th:text="${title}"></title>
+        <link rel="stylesheet" th:href="@{/css/wijnhuis.css}">
+    </head>
+    <nav  class="container" th:fragment="menu">
+        <img th:src="@{/images/intro.jpg}">
+        <h1 class = "top-centered">Wereldwijnen</h1>
+        <ul class = "centered">
+            <li > <img th:src="@{/images/1.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/2.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/3.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li> <img th:src="@{/images/4.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li> <img th:src="@{/images/5.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/6.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/7.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/8.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/9.png}" alt="wijnhuis" class="fullwidth"></li>
+            <li > <img th:src="@{/images/10.png}" alt="wijnhuis" class="fullwidth"></li>
+        </ul>
+    </nav>
+
+
+</div>
