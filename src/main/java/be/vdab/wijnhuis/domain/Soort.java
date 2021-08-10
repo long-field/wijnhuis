@@ -12,7 +12,7 @@ public class Soort {
     private String naam;
     @Version
     private long versie;
-    @OneToMany(mappedBy = "wijnen")
+    @OneToMany(mappedBy = "soorten")
     @JoinColumn(name = "soortId")
     private Set<Wijn> wijnen;
     @ManyToOne(optional = false)
