@@ -9,24 +9,25 @@ import java.util.Set;
 @Table(name = "landen")
 public class Land {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    long id;
+
     private String naam;
-    @Version
-    private long versie;
-    @OneToMany(mappedBy = "soorten", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "land")
+    @OrderBy("naam")
     private Set<Soort> soorten;
 
-    public Land(String naam) {
+    public Land() {
+    }
+
+    public Land(long id, String naam) {
+        this.id = id;
         this.naam = naam;
-        this.versie = versie;
         this.soorten = new LinkedHashSet<>();
     }
 
-    protected  Land() {
-    }
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
@@ -34,11 +35,8 @@ public class Land {
         return naam;
     }
 
-    public long getVersie() {
-        return versie;
-    }
-
     public Set<Soort> getSoorten() {
         return Collections.unmodifiableSet(soorten);
     }
+
 }
