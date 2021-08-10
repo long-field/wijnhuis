@@ -7,121 +7,50 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "wijnen")
-public class Wijn implements Serializable, Comparable<Wijn>{
-    private static final long serialVersionUID = 1L;
-
-    // MEMBER VARIABLES
+public class Wijn {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
-    private byte beoordeling;
-    private int inBestelling;
+    @GeneratedValue
+    long id;
     private int jaar;
+    private int beoordeling;
     private BigDecimal prijs;
-
-    @ManyToOne(optional=false, fetch=FetchType.LAZY)
-    @JoinColumn(name="soortid")
+    private long inBestelling;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "soortid")
     private Soort soort;
 
-
-    // CONSTRUCTORS
-    protected Wijn() {}
-
-    public Wijn(byte beoordeling, int inBestelling, int jaar, BigDecimal prijs, Soort soort) {
-        setBeoordeling(beoordeling);
-        setInBestelling(inBestelling);
-        setJaar(jaar);
-        setPrijs(prijs);
-        setSoort(soort);
+    protected Wijn() {
     }
 
-
-    // GETTERS & SETTERS
-    public long getId() {
-        return this.id;
-    }
-    public byte getBeoordeling() {
-        return this.beoordeling;
-    }
-    public int getInBestelling() {
-        return this.inBestelling;
-    }
-    public int getJaar() {
-        return this.jaar;
-    }
-    public BigDecimal getPrijs() {
-        return this.prijs;
-    }
-    public Soort getSoort() {
-        return this.soort;
-    }
-
-    public void setSoort(Soort soort) {
+    public Wijn(int jaar, int beoordeling, BigDecimal prijs, long inBestelling, Soort soort) {
+        this.jaar = jaar;
+        this.beoordeling = beoordeling;
+        this.prijs = prijs;
+        this.inBestelling = inBestelling;
         this.soort = soort;
     }
-    public void setBeoordeling(byte beoordeling) {
-        this.beoordeling = beoordeling;
-    }
-    public void setInBestelling(int inBestelling) {
-        this.inBestelling = inBestelling;
-    }
-    public void setJaar(int jaar) {
-        this.jaar = jaar;
-    }
-    public void setPrijs(BigDecimal prijs) {
-        this.prijs = prijs;
+
+    public long getId() {
+        return id;
     }
 
-    public String getSterrenBeoordeling() {
-        String sterretjes = "";
-        for (byte i = 0; i < beoordeling; i++) {
-            sterretjes += "&#9733;";
-        }
-        return sterretjes;
+    public int getJaar() {
+        return jaar;
     }
 
-
-    // OVERRIDDEN OBJECT METHODS
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + jaar;
-        result = prime * result + ((soort == null) ? 0 : soort.hashCode());
-        return result;
+    public int getBeoordeling() {
+        return beoordeling;
     }
 
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (!(obj instanceof Wijn))
-            return false;
-        Wijn other = (Wijn) obj;
-        if (jaar != other.jaar)
-            return false;
-        if (soort == null) {
-            if (other.soort != null)
-                return false;
-        } else if (!soort.equals(other.soort))
-            return false;
-        return true;
+    public BigDecimal getPrijs() {
+        return prijs;
     }
 
-    /**
-     * Vergelijkt twee wijnen op natuurlijke volgorde van hun jaartal. Deze is gelijk aan this.jaar - other.jaar.
-     */
-    @Override
-    public int compareTo(Wijn other) {
-        return this.jaar - other.jaar;
+    public long getInBestelling() {
+        return inBestelling;
     }
 
-
-    // OPERATIONS
-    public final void addInBestelling(int aantal) {
-        this.inBestelling = this.inBestelling + aantal;
+    public Soort getSoort() {
+        return soort;
     }
 }
